@@ -1,27 +1,26 @@
-# Angular15To17NewFeatures
+# Angular version 15-17 new features list
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+## Version 17
 
-## Development server
+1. Deferrable views
+2. Built-in control flow
+3. Signals
+4. New lifecycle hooks (afterRender, afterNextRender)
+5. Vite and esbuild
+6. Hydration
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Version 16
 
-## Code scaffolding
+1. Standalone component migration and scaffolding
+2. RxJS interoperability
+3. Server-side rendering and hydration
+4. Passing router data as component inputs
+5. Flexible ngOnDestroy
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Version 15
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Standalone APIs
+2. Router and HttpClient tree-shakable standalone APIs
+3. Directive composition API
+4. Image directive
+5. CDK Listbox
