@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
-import { NgOptimizedImageComponent } from './angular-15/ng-optimized-image/ng-optimized-image.component';
+import { Angular15Component } from './angular15/angular15.component';
+import { Angular16Component } from './angular16/angular16.component';
+import { Angular17Component } from './angular17/angular17.component';
 
 export const routes: Routes = [
-  { path: 'standAlone', loadComponent:()=> import('./angular-15/stand-alone/stand-alone.component').then(m=> m.StandAloneComponent) },
-  { path: 'ngOptimizedImage', component: NgOptimizedImageComponent},
+  {path: '', redirectTo: 'angular15', pathMatch: 'full'},
+  {path: 'angular15', component: Angular15Component},
+  {path: 'angular16', component: Angular16Component},
+  {path: 'angular17', component: Angular17Component},
 ];
