@@ -10,5 +10,5 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'angular-15-to-17-new-features';
+  title:string = 'angular-15-to-17-new-features';
 }
