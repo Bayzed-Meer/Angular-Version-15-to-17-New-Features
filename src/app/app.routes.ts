@@ -3,5 +3,5 @@ import { NgOptimizedImageComponent } from './angular-15/ng-optimized-image/ng-op
 
 export const routes: Routes = [
   { path: 'standAlone', loadComponent:()=> import('./angular-15/stand-alone/stand-alone.component').then(m=> m.StandAloneComponent) },
-  {path: 'ngOptimizedImage', component: NgOptimizedImageComponent}
+  { path: 'ngOptimizedImage', component: NgOptimizedImageComponent},
 ];
