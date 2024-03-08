@@ -14,11 +14,11 @@ export const routes: Routes = [
     component: Angular15Component,
     children: [
       {
-        path: 'stand-alone',
+        path: 'standAlone',
         loadComponent: () => import('./angular15/stand-alone/stand-alone.component').then(m => m.StandAloneComponent)
       },
       {
-        path: 'image-directive',
+        path: 'imageDirective',
         loadComponent: () => import('./angular15/ng-optimized-image/ng-optimized-image.component').then(m => m.NgOptimizedImageComponent)
       },
       {
@@ -33,6 +33,17 @@ export const routes: Routes = [
   },
   {
     path: 'angular17',
-    component: Angular17Component
+    component: Angular17Component,
+    children: [
+      {
+        path: 'builtInControlFlow',
+        loadComponent: () => import('./angular17/built-in-control-flow/built-in-control-flow.component').then(m => m.BuiltInControlFlowComponent)
+      },
+      {
+        path: 'deferrableViews',
+        loadComponent: () => import('./angular17/deferrable-views/deferrable-views.component').then(m => m.DeferrableViewsComponent)
+
+      },
+    ]
   }
 ];
