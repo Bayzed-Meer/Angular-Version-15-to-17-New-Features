@@ -2,9 +2,6 @@ import { Routes } from '@angular/router';
 import { Angular15Component } from './angular15/angular15.component';
 import { Angular16Component } from './angular16/angular16.component';
 import { Angular17Component } from './angular17/angular17.component';
-import { StandAloneComponent } from './angular15/stand-alone/stand-alone.component';
-import { NgOptimizedImageComponent } from './angular15/ng-optimized-image/ng-optimized-image.component';
-import { CdkListBoxComponent } from './angular15/cdk-list-box/cdk-list-box.component';
 
 export const routes: Routes = [
   {
@@ -18,15 +15,15 @@ export const routes: Routes = [
     children: [
       {
         path: 'stand-alone',
-        component: StandAloneComponent
+        loadComponent: () => import('./angular15/stand-alone/stand-alone.component').then(m => m.StandAloneComponent)
       },
       {
         path: 'image-directive',
-        component: NgOptimizedImageComponent
+        loadComponent: () => import('./angular15/ng-optimized-image/ng-optimized-image.component').then(m => m.NgOptimizedImageComponent)
       },
       {
         path: 'cdkList',
-        component: CdkListBoxComponent
+        loadComponent: () => import('./angular15/cdk-list-box/cdk-list-box.component').then(m => m.CdkListBoxComponent)
       }
     ]
   },
