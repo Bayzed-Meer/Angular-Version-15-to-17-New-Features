@@ -1,54 +1,70 @@
 import { Routes } from '@angular/router';
-import { Angular15Component } from './angular15/angular15.component';
-import { Angular16Component } from './angular16/angular16.component';
-import { Angular17Component } from './angular17/angular17.component';
+import { Angular15Component } from './components/angular15/angular15.component';
+import { Angular16Component } from './components/angular16/angular16.component';
+import { Angular17Component } from './components/angular17/angular17.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'angular15',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'angular15',
-    component: Angular15Component,
     children: [
+      { path: '', component: Angular15Component },
       {
         path: 'standAlone',
-        loadComponent: () => import('./angular15/stand-alone/stand-alone.component').then(m => m.StandAloneComponent)
+        loadComponent: () =>
+          import(
+            './components/angular15/components/stand-alone/stand-alone.component'
+          ).then((m) => m.StandAloneComponent),
       },
       {
         path: 'imageDirective',
-        loadComponent: () => import('./angular15/ng-optimized-image/ng-optimized-image.component').then(m => m.NgOptimizedImageComponent)
+        loadComponent: () =>
+          import(
+            './components/angular15/components/ng-optimized-image/ng-optimized-image.component'
+          ).then((m) => m.NgOptimizedImageComponent),
       },
       {
         path: 'cdkList',
-        loadComponent: () => import('./angular15/cdk-list-box/cdk-list-box.component').then(m => m.CdkListBoxComponent)
-      }
-    ]
+        loadComponent: () =>
+          import(
+            './components/angular15/components/cdk-list-box/cdk-list-box.component'
+          ).then((m) => m.CdkListBoxComponent),
+      },
+    ],
   },
   {
     path: 'angular16',
-    component: Angular16Component
+    component: Angular16Component,
   },
   {
     path: 'angular17',
-    component: Angular17Component,
     children: [
+      { path: '', component: Angular17Component },
       {
         path: 'builtInControlFlow',
-        loadComponent: () => import('./angular17/built-in-control-flow/built-in-control-flow.component').then(m => m.BuiltInControlFlowComponent)
+        loadComponent: () =>
+          import(
+            './components/angular17/components/built-in-control-flow/built-in-control-flow.component'
+          ).then((m) => m.BuiltInControlFlowComponent),
       },
       {
         path: 'deferrableViews',
-        loadComponent: () => import('./angular17/deferrable-views/deferrable-views.component').then(m => m.DeferrableViewsComponent)
-
+        loadComponent: () =>
+          import(
+            './components/angular17/components/deferrable-views/deferrable-views.component'
+          ).then((m) => m.DeferrableViewsComponent),
       },
       {
         path: 'signals',
-        loadComponent: () => import('./angular17/signals/signals.component').then(m => m.SignalsComponent)
-
+        loadComponent: () =>
+          import(
+            './components/angular17/components/signals/signals.component'
+          ).then((m) => m.SignalsComponent),
       },
-    ]
-  }
+    ],
+  },
 ];

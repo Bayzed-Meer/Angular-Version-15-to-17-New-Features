@@ -1,0 +1,34 @@
+<div class="card-container">
+  <div
+    class="card"
+    routerLink="standAlone"
+    [routerLinkActive]="'active'"
+    appHighlightAndBorder
+    borderColor="blue"
+    highlightColor="lightskyblue"
+  >
+    <h3>Stand Alone</h3>
+  </div>
+  <div
+    class="card"
+    routerLink="imageDirective"
+    [routerLinkActive]="'active'"
+    appHighlightAndBorder
+    borderColor="blue"
+    highlightColor="lightskyblue"
+  >
+    <h3>Ng Optimized</h3>
+  </div>
+  <div
+    class="card"
+    routerLink="cdkList"
+    [routerLinkActive]="'active'"
+    appHighlightAndBorder
+    borderColor="blue"
+    highlightColor="lightskyblue"
+  >
+    <h3>CDK</h3>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
