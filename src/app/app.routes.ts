@@ -44,6 +44,11 @@ export const routes: Routes = [
         loadComponent: () => import('./angular17/deferrable-views/deferrable-views.component').then(m => m.DeferrableViewsComponent)
 
       },
+      {
+        path: 'signals',
+        loadComponent: () => import('./angular17/signals/signals.component').then(m => m.SignalsComponent)
+
+      },
     ]
   }
 ];
