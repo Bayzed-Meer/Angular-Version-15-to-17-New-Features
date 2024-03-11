@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, withComponentInputBinding } from '@angular/router';
 import { Angular15Component } from './components/angular15/angular15.component';
 import { Angular16Component } from './components/angular16/angular16.component';
 import { Angular17Component } from './components/angular17/angular17.component';
@@ -53,6 +53,13 @@ export const routes: Routes = [
           import(
             './components/angular16/components/rxjs-interop/rxjs-interop.component'
           ).then((m) => m.RxjsInteropComponent),
+      },
+      {
+        path: 'routerDataAsInput/:id',
+        loadComponent: () =>
+          import(
+            './components/angular16/components/router-data-as-input/router-data-as-input.component'
+          ).then((m) => m.RouterDataAsInputComponent),
       },
     ],
   },
