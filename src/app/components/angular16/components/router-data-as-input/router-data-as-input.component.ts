@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class RouterDataAsInputComponent {
   @Input() id!: string;
+  @Input() name!: string;
   @Input() class!: string;
 }

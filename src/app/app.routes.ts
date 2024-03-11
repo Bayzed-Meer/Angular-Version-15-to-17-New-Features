@@ -1,7 +1,9 @@
-import { Routes, withComponentInputBinding } from '@angular/router';
+import { Routes } from '@angular/router';
 import { Angular15Component } from './components/angular15/angular15.component';
 import { Angular16Component } from './components/angular16/angular16.component';
 import { Angular17Component } from './components/angular17/angular17.component';
+import { inject } from '@angular/core';
+import { LoginService } from './login.service';
 
 export const routes: Routes = [
   {
@@ -65,6 +67,7 @@ export const routes: Routes = [
   },
   {
     path: 'angular17',
+    canActivate: [() => inject(LoginService).isLoggedIn()],
     children: [
       { path: '', component: Angular17Component },
       {
