@@ -38,7 +38,23 @@ export const routes: Routes = [
   },
   {
     path: 'angular16',
-    component: Angular16Component,
+    children: [
+      { path: '', component: Angular16Component },
+      {
+        path: 'destroyRef',
+        loadComponent: () =>
+          import(
+            './components/angular16/components/destroy-ref/destroy-ref.component'
+          ).then((m) => m.DestroyRefComponent),
+      },
+      {
+        path: 'rxjsInterop',
+        loadComponent: () =>
+          import(
+            './components/angular16/components/rxjs-interop/rxjs-interop.component'
+          ).then((m) => m.RxjsInteropComponent),
+      },
+    ],
   },
   {
     path: 'angular17',
