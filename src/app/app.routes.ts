@@ -91,6 +91,13 @@ export const routes: Routes = [
             './components/angular17/components/signals/signals.component'
           ).then((m) => m.SignalsComponent),
       },
+      {
+        path: 'newLifeCycleHooks',
+        loadComponent: () =>
+          import(
+            './components/angular17/components/new-life-cycle-hooks/new-life-cycle-hooks.component'
+          ).then((m) => m.NewLifeCycleHooksComponent),
+      },
     ],
   },
 ];
