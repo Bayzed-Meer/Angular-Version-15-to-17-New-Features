@@ -1,0 +1,20 @@
+<div>
+  <div class="w-1/2 mx-auto mt-12">
+    <p class="text-3xl font-bold">
+      {{ pageTitle }}
+    </p>
+    @if(pageImage){
+    <img [src]="pageImage" alt="Page Image" class="py-6" />
+    } @for(topic of topics; track topic.title){
+    <div class="pb-8">
+      <p class="text-2xl font-semibold py-2">{{ topic?.title }}</p>
+      <div *ngFor="let paragraph of topic?.content">
+        <p class="text-lg py-2">{{ paragraph }}</p>
+      </div>
+      <div *ngFor="let code of topic?.codeSnippets">
+        <pre><code>{{ code }}</code></pre>
+      </div>
+    </div>
+    }
+  </div>
+</div>
