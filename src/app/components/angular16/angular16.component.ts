@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './angular16.component.html',
   styleUrl: './angular16.component.scss',
 })
-export class Angular16Component {}
+export class Angular16Component {
+  pageImage = '../../../assets/angular15.png';
+}
