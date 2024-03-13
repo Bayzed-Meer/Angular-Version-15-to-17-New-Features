@@ -4,12 +4,17 @@ import { Angular16Component } from './components/angular16/angular16.component';
 import { Angular17Component } from './components/angular17/angular17.component';
 import { inject } from '@angular/core';
 import { LoginService } from './login.service';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'angular15',
+    redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: 'angular15',

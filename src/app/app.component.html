@@ -1,9 +1,39 @@
-<nav>
-  <ul>
-    <li routerLink="angular15">Angular 15</li>
-    <li routerLink="angular16">Angular 16</li>
-    <li routerLink="angular17">Angular 17</li>
-  </ul>
+<nav class="shadow-md bg-white">
+  <div class="w-5/6 mx-auto px-6 py-3 flex justify-between items-center">
+    <div class="cursor-pointer">
+      <img [src]="logo" alt="Logo" />
+    </div>
+    <div class="flex gap-16">
+      @for(menuItem of menuItems; track menuItem.label){
+      <div class="relative group">
+        <a [routerLink]="menuItem.routerLink" routerLinkActive="text-red-800">{{
+          menuItem.label
+        }}</a>
+        <div
+          class="absolute hidden group-hover:block text-nowrap bg-white border border-gray-300 p-2 rounded-md shadow-md"
+        >
+          @for(childLink of menuItem.childLinks; track childLink.label){
+          <div>
+            <a [routerLink]="childLink.routerLink" class="">{{
+              childLink.label
+            }}</a>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    <div
+      class="flex items-center border border-gray-300 rounded-md focus-within:border-red-500"
+    >
+      <input type="text" class="outline-none pl-2" placeholder="Search..." />
+      <button
+        class="p-1 bg-gray-200 text-gray-700 rounded-r-md focus:outline-none focus:bg-gray-300"
+      >
+        <mat-icon class="cursor-pointer">search</mat-icon>
+      </button>
+    </div>
+  </div>
 </nav>
 
 <router-outlet></router-outlet>
