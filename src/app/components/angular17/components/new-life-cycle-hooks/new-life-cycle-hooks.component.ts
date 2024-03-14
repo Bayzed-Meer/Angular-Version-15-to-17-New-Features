@@ -21,7 +21,7 @@ export class NewLifeCycleHooksComponent {
   constructor() {
     afterNextRender(() => {
       this.resizeObserver = new ResizeObserver(() => {
-        console.log('Content was resized');
+        console.log('afterNextRender works: Content was resized');
       });
       this.resizeObserver.observe(this.afterNextRender.nativeElement);
     });
@@ -29,7 +29,7 @@ export class NewLifeCycleHooksComponent {
     afterRender(() => {
       const element = this.afterRender.nativeElement;
       console.log(
-        `After render, content position: (${element.offsetLeft}, ${element.offsetTop})`
+        `AfterRender Works: content position: (${element.offsetLeft}, ${element.offsetTop})`
       );
     });
   }

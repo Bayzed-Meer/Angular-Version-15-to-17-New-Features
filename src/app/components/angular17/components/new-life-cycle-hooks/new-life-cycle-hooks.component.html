@@ -1,2 +1,64 @@
-<div #afterNextRender>afterNextRender</div>
-<button #afterRender (click)="click($event)">afterRender</button>
+<div class="mx-auto py-12 prose" #afterNextRender>
+  <h1>New lifecycle hooks</h1>
+  <p>
+    Angular 17 introduces two novel lifecycle hooks: afterRender and
+    afterNextRender. These hooks empower developers to execute code after a
+    component has been rendered—be it the initial render (afterNextRender) or
+    any subsequent render (afterRender).
+  </p>
+
+  <p>
+    This represents a substantial enhancement over existing lifecycle hooks,
+    such as ngAfterViewInit, which trigger after a component has been
+    initialized but before any DOM updates have occurred. This can pose
+    challenges when working with the DOM in ngAfterViewInit, as one often needs
+    to await DOM updates before interacting with them.
+  </p>
+
+  <p>
+    The afterRender and afterNextRender hooks, however, guarantee execution
+    after DOM updates, rendering them ideal for DOM-related tasks like invoking
+    third-party libraries or direct DOM manipulation.
+  </p>
+
+  <p>
+    Additionally, it's worth noting that these hooks do not run during
+    server-side rendering (SSR), simplifying their use in SSR applications where
+    you don't want your code to run twice—once on the server and again on the
+    client.
+  </p>
+  <h2>afterRender and afterNextRender</h2>
+  <p>
+    The afterRender and afterNextRender functions let you register a render
+    callback to be invoked after Angular has finished rendering all components
+    on the page into the DOM.
+  </p>
+  <p>
+    These functions are different from the other lifecycle hooks. Rather than a
+    class method, they are standalone functions that accept a callback. The
+    execution of render callbacks is not tied to any specific component instance
+    but instead an application-wide hook.
+  </p>
+  <p>
+    afterRender and afterNextRender must be called in an injection context, You
+    can use render callbacks to perform manual DOM operations.
+  </p>
+  <p>
+    Render callbacks do not run during server-side rendering or during
+    build-time pre-rendering.
+  </p>
+
+  <h2>Let's see how afterRender and afterNextRender works</h2>
+  <p>
+    Try to resize the window and look at the console what's afterNextRender
+    showing
+  </p>
+  <p>Click on the afterRend button to see the current position of the button</p>
+  <button
+    #afterRender
+    (click)="click($event)"
+    class="py-1 px-3 mb-4 rounded-lg bg-slate-300"
+  >
+    afterRender
+  </button>
+</div>
