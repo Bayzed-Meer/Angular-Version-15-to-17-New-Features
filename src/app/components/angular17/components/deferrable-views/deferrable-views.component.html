@@ -7,7 +7,7 @@
   <pre><code>{{code}}</code></pre>
   <p>
     The most incredible part is that this all happens via a compile-time
-    transformation: Angular abstracts all the complexity by finding components,
+    transformation. Angular abstracts all the complexity by finding components,
     directive and pipes used inside of a defer block, generating dynamic imports
     and managing the process of loading and switching between states.
   </p>
@@ -19,4 +19,28 @@
     comment-list component starts. Once the loading is completed, Angular
     removes the placeholder and renders the component.
   </p>
+  <h2>
+    To witness the deferrable view in action, switch your network mode to "slow
+    3G" and reload the page.
+  </h2>
+  @defer (on viewport) {
+  <app-comment-list />
+  } @loading { Loading… } @error { Loading failed :( } @placeholder {
+  <p>This is a placeholder</p>
+  }
+  <p>Deferrable views offer a few more triggers:</p>
+  <ul>
+    <li>on idle</li>
+    <li>on viewport</li>
+    <li>on interaction</li>
+    <li>on hover</li>
+    <li>on immediate</li>
+    <li>on timer</li>
+  </ul>
+  <p>
+    Deferrable views also provide the ability to prefetch the dependencies ahead
+    of rendering them. Adding prefetching is as simple as adding a prefetch
+    statement to the defer block and supports all the same triggers.
+  </p>
+  <pre><code>{{prefetch}}</code></pre>
 </div>
