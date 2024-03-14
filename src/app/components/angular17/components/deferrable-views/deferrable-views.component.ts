@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
-import { BuiltInControlFlowComponent } from '../built-in-control-flow/built-in-control-flow.component';
 
 @Component({
   selector: 'app-deferrable-views',
   standalone: true,
-  imports: [BuiltInControlFlowComponent],
+  imports: [],
   templateUrl: './deferrable-views.component.html',
   styleUrl: './deferrable-views.component.scss',
 })
-export class DeferrableViewsComponent {}
+export class DeferrableViewsComponent {
+  code: string = `@defer {
+    <comment-list />
+  }`;
+
+  full: string = `@defer (on viewport) {
+  <comment-list/>
+} @loading {
+  Loading…
+} @error {
+  Loading failed :(
+} @placeholder {
+  <img src="comments-placeholder.png">
+}`;
+}

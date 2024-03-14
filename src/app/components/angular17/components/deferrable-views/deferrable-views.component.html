@@ -1,7 +1,22 @@
-@defer {
-<app-built-in-control-flow />
-} @placeholder (minimum 300ms) {
-<img
-  src="https://img.freepik.com/premium-vector/system-software-update-upgrade-concept-loading-process-screen-vector-illustration_175838-2182.jpg?size=338&ext=jpg&ga=GA1.1.1395880969.1709769600&semt=sph"
-/>
-}
+<div class="mx-auto py-12 prose">
+  <h1>Deferrable views</h1>
+  <p>
+    The new deferrable views, allow you to lazily load the list of comments and
+    all their transitive dependencies with a single line of declarative code:
+  </p>
+  <pre><code>{{code}}</code></pre>
+  <p>
+    The most incredible part is that this all happens via a compile-time
+    transformation: Angular abstracts all the complexity by finding components,
+    directive and pipes used inside of a defer block, generating dynamic imports
+    and managing the process of loading and switching between states.
+  </p>
+  <h2>Let's analyze how it works:</h2>
+  <pre><code>{{full}}</code></pre>
+  <p>
+    In the example above, Angular first renders the contents of the placeholder
+    block. When it becomes visible in the viewport, the loading of the
+    comment-list component starts. Once the loading is completed, Angular
+    removes the placeholder and renders the component.
+  </p>
+</div>

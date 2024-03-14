@@ -1,17 +1,124 @@
-<h1>if else statements</h1>
+<div class="mx-auto py-12 prose">
+  <h1>Built-in Control Flow</h1>
+  <p>
+    Built-in control flow offers a new way to manage template logic. This
+    feature aims to improve developer experience by offering a more intuitive
+    and concise syntax compared to directives like *ngIf, *ngFor, and *ngSwitch.
+    The new syntax is closer to JavaScript and provides features like better
+    type checking and optional else-if blocks for conditional statements.
+    Built-in control flow also boasts significant performance improvements,
+    especially with the new for loop that offers up to 90% faster runtime
+    compared to *ngFor. This new feature is currently available in Angular 17
+    under developer preview.
+  </p>
 
-<div>
-  @if (role === 'admin') { You are an administrator. } @else if (role ===
-  'user') { You are a regular user. } @else { You are not logged in. }
+  <h2>Conditional Statements</h2>
+  <p>Let’s look at a side-by-side comparison with *ngIf:</p>
+  <pre><code>{{ ngif }}</code></pre>
+  <p>With the built-in if statement, this condition will look like:</p>
+  <pre><code>{{ newif }}</code></pre>
+  <p>
+    In the current control flow, you can use
+    <span class="text-red-500">else-if</span>, which historically has been
+    impossible.
+  </p>
+  <pre><code>{{ elseif }}</code></pre>
+
+  <p>Let's look at switch case:</p>
+  <pre><code>{{ ngSwitch }}</code></pre>
+  <p>which with the built-in control flow turns into:</p>
+  <pre><code>{{ newSwitch }}</code></pre>
+
+  <h2>Built-in For Loop</h2>
+  <p>
+    Angular v17 debuts a groundbreaking built-in for loop, accelerating
+    rendering speeds by up to 90% compared to *ngFor. Key features include a new
+    diffing algorithm for lightning-fast updates, a mandatory
+    <span class="text-red-500">track</span> attribute, and an optional
+    <span class="text-red-500">empty</span> block for empty collections. This
+    update ensures smoother, more efficient Angular applications with seamless
+    migration paths.
+  </p>
+  <p>*ngFor directive:</p>
+  <pre><code>{{ ngFor }}</code></pre>
+  <p>The new For Loop:</p>
+  <pre><code>{{ newFor }}</code></pre>
+
+  <h2>Track for Calculating Difference of Two Collections</h2>
+  <p>
+    The for block requires a track expression. Angular uses the value of this
+    expression as a unique identity for each item. This identity allows the
+    framework to perform the minimal set of DOM operations necessary after items
+    are added, removed, or reordered.
+  </p>
+  <p>
+    If your items do not contain any key property to uniquely identify them, you
+    can use `$index` in the track expression.
+  </p>
+  <pre><code>{{ trackWithIndex }}</code></pre>
+
+  <h2>$index and Other Contextual Variables</h2>
+  <p>Inside for contents, several implicit variables are always available:</p>
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td>$count</td>
+      <td>Number of items in a collection iterated over</td>
+    </tr>
+    <tr>
+      <td>$index</td>
+      <td>Index of the current row</td>
+    </tr>
+    <tr>
+      <td>$first</td>
+      <td>Whether the current row is the first row</td>
+    </tr>
+    <tr>
+      <td>$last</td>
+      <td>Whether the current row is the last row</td>
+    </tr>
+    <tr>
+      <td>$even</td>
+      <td>Whether the current row index is even</td>
+    </tr>
+    <tr>
+      <td>$odd</td>
+      <td>Whether the current row index is odd</td>
+    </tr>
+  </table>
+  <p>
+    These variables are always available with these names but can be aliased via
+    a let segment:
+  </p>
+  <pre><code>{{ contextualVariables }}</code></pre>
+  <p>
+    The aliasing is especially useful in the case of using nested for blocks
+    where contextual variable names could collide.
+  </p>
+
+  <h2>Let's Look at an Example of Track</h2>
+  <p>*ngFor:</p>
+  <ul>
+    <li *ngFor="let user of users">{{ user.name }}</li>
+  </ul>
+  <p>For Loop</p>
+  <ul>
+    @for(user of users; track user.id) {
+    <li>{{ user.name }}</li>
+    }
+  </ul>
+
+  <button (click)="clone()" class="py-1 px-3 mb-4 rounded-lg bg-slate-300">
+    Clone
+  </button>
+
+  <p>
+    Now, open the inspect view and observe the li elements in the DOM. When the
+    "Clone" button is clicked, the `*ngFor` directive creates new `li` elements.
+    On the other hand, the new `for` loop keeps track of the items, enabling the
+    framework to perform the minimal set of DOM operations necessary.
+  </p>
 </div>
-
-<h1>loop</h1>
-
-@for (ingredient of ingredientList; track ingredient.name) {
-<li>{{ ingredient.name }} - {{ ingredient.quantity }}</li>
-}
-
-<h1>switch case</h1>
-
-@switch (day) { @case (1) { monday } @case (2) { tuesday } @default { holiday }
-}
