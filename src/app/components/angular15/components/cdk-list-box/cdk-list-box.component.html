@@ -9,8 +9,16 @@
     boxes. To use it, we need to import the CdkListboxModule, which provides two
     directives — cdkListbox and cdkOption:
   </p>
-  <pre><code>{{cdk}}</code></pre>
-  <p>
+  <pre><code class="language-html">&lt;div&gt;
+  &lt;h5&gt;Courses&lt;/h5&gt;
+  &lt;ul cdkListbox&gt;
+    &lt;li cdkOption="{{'angular'}}"&gt;Angular&lt;/li&gt;
+    &lt;li cdkOption="{{'react'}}"&gt;React&lt;/li&gt;
+    &lt;li cdkOption="{{'solid'}}"&gt;Solid&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+  <p class="pt-4">
     These two directives give us all the expected behavior for an accessible
     experience, such as bidi layout support and keyboard interaction. In
     addition, all directives apply their associated ARIA roles to their host

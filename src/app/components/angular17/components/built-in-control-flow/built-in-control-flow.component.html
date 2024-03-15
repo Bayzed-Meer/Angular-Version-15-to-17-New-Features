@@ -14,22 +14,50 @@
 
   <h2>Conditional Statements</h2>
   <p>Let’s look at a side-by-side comparison with *ngIf:</p>
-  <pre><code>{{ ngif }}</code></pre>
-  <p>With the built-in if statement, this condition will look like:</p>
-  <pre><code>{{ newif }}</code></pre>
-  <p>
+  <pre><code class="language-html">&lt;div *ngIf="loggedIn; else anonymousUser"&gt;
+  The user is logged in
+&lt;/div&gt;
+&lt;ng-template #anonymousUser&gt;
+  The user is not logged in
+&lt;/ng-template&gt;</code></pre>
+
+  <p class="pt-2">
+    With the built-in if statement, this condition will look like:
+  </p>
+  <pre><code class="language-typescript">&#64;if (loggedIn) &#123;
+  The user is logged in
+&#125; &#64;else &#123;
+  The user is not logged in
+&#125;</code></pre>
+
+  <p class="pt-2">
     In the current control flow, you can use
     <span class="text-red-500">else-if</span>, which historically has been
     impossible.
   </p>
-  <pre><code>{{ elseif }}</code></pre>
+  <pre><code class="language-typescript">&#64;if (role === 'admin') &#123; 
+  You are an administrator. 
+&#125; &#64;else if (role === 'user') &#123; 
+  You are a regular user. 
+&#125; &#64;else &#123; 
+  You are not logged in. 
+&#125;</code></pre>
 
-  <p>Let's look at switch case:</p>
-  <pre><code>{{ ngSwitch }}</code></pre>
-  <p>which with the built-in control flow turns into:</p>
-  <pre><code>{{ newSwitch }}</code></pre>
+  <p class="pt-2">Let's look at switch case:</p>
+  <pre><code class="language-html">&lt;div [ngSwitch]="accessLevel"&gt;
+  &lt;admin-dashboard *ngSwitchCase="'admin'"&gt;&lt;/admin-dashboard&gt;
+  &lt;moderator-dashboard *ngSwitchCase="'moderator'"&gt;&lt;/moderator-dashboard&gt;
+  &lt;user-dashboard *ngSwitchDefault&gt;&lt;/user-dashboard&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Built-in For Loop</h2>
+  <p class="pt-2">which with the built-in control flow turns into:</p>
+  <pre><code class="language-typescript">&#64;switch (accessLevel) &#123;
+  &#64;case ('admin') &#123; &lt;admin-dashboard/&gt; &#125;
+  &#64;case ('moderator') &#123; &lt;moderator-dashboard/&gt; &#125;
+  &#64;default &#123; &lt;user-dashboard/&gt; &#125;
+&#125;</code></pre>
+
+  <h2 class="pt-2">Built-in For Loop</h2>
   <p>
     Angular v17 debuts a groundbreaking built-in for loop, accelerating
     rendering speeds by up to 90% compared to *ngFor. Key features include a new
@@ -40,11 +68,21 @@
     migration paths.
   </p>
   <p>*ngFor directive:</p>
-  <pre><code>{{ ngFor }}</code></pre>
-  <p>The new For Loop:</p>
-  <pre><code>{{ newFor }}</code></pre>
+  <pre><code class="language-html">&lt;div *ngFor="let user of users"&gt;
+  &#123; &#123; user.name &#125;&#125;
+&lt;/div&gt;
+&lt;div *ngIf="users.length === 0"&gt;
+  Empty list of users
+&lt;/div&gt;</code></pre>
 
-  <h2>Track for Calculating Difference of Two Collections</h2>
+  <p class="pt-2">The new For Loop:</p>
+  <pre><code class="language-typescript">&#64;for (let user of users; track user.id) &#123;
+  &#123; &#123; user.name &#125;&#125;
+&#125; &#64;empty &#123;
+  Empty list of users
+&#125;</code></pre>
+
+  <h2 class="pt-2">Track for Calculating Difference of Two Collections</h2>
   <p>
     The for block requires a track expression. Angular uses the value of this
     expression as a unique identity for each item. This identity allows the
@@ -55,9 +93,13 @@
     If your items do not contain any key property to uniquely identify them, you
     can use `$index` in the track expression.
   </p>
-  <pre><code>{{ trackWithIndex }}</code></pre>
+  <pre><code class="language-typescript">&#64;for (let user of users; track $index) &#123;
+  &#123; &#123; user.name &#125;&#125;
+&#125; &#64;empty &#123;
+  Empty list of users
+&#125;</code></pre>
 
-  <h2>$index and Other Contextual Variables</h2>
+  <h2 class="pt-2">$index and Other Contextual Variables</h2>
   <p>Inside for contents, several implicit variables are always available:</p>
   <table>
     <tr>
@@ -93,8 +135,11 @@
     These variables are always available with these names but can be aliased via
     a let segment:
   </p>
-  <pre><code>{{ contextualVariables }}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;for (let item of items; track item.id; let idx = $index, e = $even) &#123;
+  Item &#123; &#123; idx &#125;&#125;: &#123; &#123; item.name &#125;&#125;
+&#125;</code></pre>
+
+  <p class="pt-2">
     The aliasing is especially useful in the case of using nested for blocks
     where contextual variable names could collide.
   </p>

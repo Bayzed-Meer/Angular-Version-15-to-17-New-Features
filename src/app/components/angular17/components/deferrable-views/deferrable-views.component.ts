@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommentListComponent } from '../comment-list/comment-list.component';
+import { HighlightService } from '../../../../highlight.service';
 
 @Component({
   selector: 'app-deferrable-views',
@@ -9,21 +10,8 @@ import { CommentListComponent } from '../comment-list/comment-list.component';
   styleUrl: './deferrable-views.component.scss',
 })
 export class DeferrableViewsComponent {
-  code: string = `@defer {
-  <app-comment-list />
-}`;
-
-  full: string = `@defer (on viewport) {
-  <app-comment-list />
-} @loading {
-  Loading…
-} @error {
-  Loading failed :(
-} @placeholder {
-  <p>This is a placeholder</p>
-}`;
-
-  prefetch: string = `@defer (on viewport; prefetch on idle) {
-  <app-comment-list />
-}`;
+  constructor(private highlightService: HighlightService) {}
+  ngAfterViewChecked() {
+    this.highlightService.highlightAll();
+  }
 }

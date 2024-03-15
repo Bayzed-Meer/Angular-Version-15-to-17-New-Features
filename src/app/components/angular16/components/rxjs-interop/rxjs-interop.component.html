@@ -10,8 +10,15 @@
     Observable. It behaves similarly to the async pipe in templates, but is more
     flexible and can be used anywhere in an application.
   </p>
-  <pre><code>{{toSignal}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;Component(&#123;
+  template: `&#123; &#123;counter&#40;&#41;&#125;&#125;`,
+&#125;)
+export class Ticker &#123;
+  counterObservable = interval(1000);
+  counter = toSignal(this.counterObservable, &#123;initialValue: 0&#125;);
+&#125;</code></pre>
+
+  <p class="pt-2">
     Like the async pipe, toSignal subscribes to the Observable immediately,
     which may trigger side effects. The subscription created by toSignal
     automatically unsubscribes from the given Observable when the component or
@@ -23,19 +30,34 @@
     of a signal. The signal's value is monitored with an effect which emits the
     value to the Observable when it changes.
   </p>
-  <pre><code>{{toObservable}}</code></pre>
-  <h2>takeUntilDestroyed</h2>
+  <pre><code class="language-typescript">count = signal(0);
+count$ = toObservable(this.count);
+  
+  ngOnInit() &#123;
+    this.count$.subscribe((newValue) => &#123;
+      console.log(`Count changed to: $&#123;newValue&#125;`);
+  &#125;);
+&#125;</code></pre>
+
+  <h2 class="pt-2">takeUntilDestroyed</h2>
   <p>
     Angular users often want to complete a stream when a related subject
     completes. The following illustrative pattern is quite common:
   </p>
-  <pre><code>{{old}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">destroyed$ = new ReplaySubject&lt;void&gt;(1);
+
+  data$ = http.get('...').pipe(takeUntil(this.destroyed$));
+  
+  ngOnDestroy() &#123;
+    this.destroyed$.next();
+&#125;</code></pre>
+
+  <p class="pt-2">
     Angular v16 introduces a new RxJS operator called takeUntilDestroyed, which
     simplifies this example into the following:
   </p>
-  <pre><code>{{new}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">data$ = http.get('…').pipe(takeUntilDestroyed());</code></pre>
+  <p class="pt-2">
     By default, this operator will inject the current cleanup context. For
     example, used in a component, it will use the component’s lifetime.
   </p>

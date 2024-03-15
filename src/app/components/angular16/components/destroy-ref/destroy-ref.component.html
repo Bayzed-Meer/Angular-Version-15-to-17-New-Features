@@ -10,8 +10,18 @@
     The usage of DestroyRef is straightforward. We can inject the DestroyRef
     provider and register a destroy callback like so:
   </p>
-  <pre><code>{{destroyref}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;Component(&#123;
+  /* ... */
+  &#125;)
+  export class UserProfile &#123;
+    constructor(private destroyRef: DestroyRef) &#123;
+      destroyRef.onDestroy(() => &#123;
+        console.log('UserProfile destruction');
+    &#125;);
+  &#125;
+&#125;</code></pre>
+
+  <p class="pt-2">
     Using DestroyRef, it’s possible to create reusable logic that performs
     necessary cleanup tasks when a scope is destroyed without the need for
     inheritance. This simplifies the implementation process and reduces
@@ -21,6 +31,28 @@
     For example, we can create an untilDestroyed operator that relies on
     DestroyRef:
   </p>
-  <pre><code>{{func}}</code></pre>
-  <pre><code>{{foo}}</code></pre>
+  <pre><code class="language-typescript">export function untilDestroyed() &#123;
+  const subject = new Subject();
+
+  inject(DestroyRef).onDestroy(() => &#123;
+    subject.next(true);
+    subject.complete();
+  &#125;);
+
+  return &lt;T&gt;() => takeUntil&lt;T&gt;(subject.asObservable());
+&#125;</code></pre>
+
+  <pre><code class="language-typescript">&#64;Directive(&#123;
+  selector: '[appFoo]',
+  standalone: true,
+&#125;)
+export class FooDirective &#123;
+  private untilDestroyed = untilDestroyed();
+
+  ngOnInit() &#123;
+    interval(1000)
+      .pipe(this.untilDestroyed())
+      .subscribe(console.log);
+  &#125;
+&#125;</code></pre>
 </div>

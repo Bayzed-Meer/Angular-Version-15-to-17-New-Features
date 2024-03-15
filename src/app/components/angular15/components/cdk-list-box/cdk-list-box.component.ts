@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CdkListboxModule } from '@angular/cdk/listbox';
+import { HighlightService } from '../../../../highlight.service';
 
 @Component({
   selector: 'app-cdk-list-box',
@@ -9,12 +10,8 @@ import { CdkListboxModule } from '@angular/cdk/listbox';
   styleUrl: './cdk-list-box.component.scss',
 })
 export class CdkListBoxComponent {
-  cdk: string = `<div>
-  <h5>Courses</h5>
-  <ul cdkListbox>
-    <li cdkOption="angular">Angular</li>
-    <li cdkOption="react">React</li>
-    <li cdkOption="solid">Solid</li>
-  </ul>
-</div>`;
+  constructor(private highlightService: HighlightService) {}
+  ngAfterViewChecked() {
+    this.highlightService.highlightAll();
+  }
 }

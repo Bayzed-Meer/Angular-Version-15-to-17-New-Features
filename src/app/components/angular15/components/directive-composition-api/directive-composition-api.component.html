@@ -16,19 +16,42 @@
     It works similar to inheritance where you can merge two directives and make
     new one.
   </p>
-  <pre><code>{{dtod}}</code></pre>
-  <h2>Including inputs and outputs</h2>
+  <pre><code class="language-typescript">&#64;Directive(&#123;
+  selector: '[appHighlightAndBorder]',
+  hostDirectives: [HighlightDirective, BorderDirective],
+  standalone: true,
+&#125;)</code></pre>
+
+  <h2 class="pt-2">Including inputs and outputs</h2>
   <p>
     When you apply hostDirectives to your component, the inputs and outputs from
     the host directives are not included in your component's API by default. You
     can explicitly include inputs and outputs in your component's API by
     expanding the entry in hostDirectives
   </p>
-  <pre><code>{{input}}</code></pre>
+  <pre><code class="language-typescript">&#64;Directive(&#123;
+  selector: '[appHighlightAndBorder]',
+  hostDirectives: [
+    &#123;
+      directive: HighlightDirective,
+      inputs: ['color: highlightColor'],
+    &#125;,
+    &#123;
+      directive: BorderDirective,
+      inputs: ['color: borderColor'],
+    &#125;
+  ],
+  standalone: true,
+&#125;)</code></pre>
 
-  <h3>Let's see how it works:</h3>
-  <pre><code>{{example}}</code></pre>
-  <p>Hover on the buttons to see the directive composition API working</p>
+  <h3 class="pt-2">Let's see how it works:</h3>
+  <pre><code class="language-html">&lt;button appBorder&gt;button&lt;/button&gt;
+&lt;button appHighlight&gt;button&lt;/button&gt;
+&lt;button appHighlightAndBorder highlightColor="green" borderColor="black"&gt;button&lt;/button&gt;</code></pre>
+
+  <p class="pt-2">
+    Hover on the buttons to see the directive composition API working
+  </p>
   <button appBorder class="py-1 px-3 mb-4 rounded-lg bg-slate-300 mr-2">
     button
   </button>

@@ -16,8 +16,19 @@
     standalone component, it can directly import another standalone component
     ImageGridComponent:
   </p>
-  <pre><code>{{imports}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;Component(&#123;
+  standalone: true,
+  selector: 'photo-gallery',
+  imports: [ImageGridComponent],
+  template: `
+    &lt;image-grid [images]="imageList"&gt;&lt;/image-grid&gt;
+    `,
+&#125;)
+export class PhotoGalleryComponent &#123;
+  // component logic
+&#125;</code></pre>
+
+  <p class="pt-2">
     imports can also be used to reference standalone directives and pipes. In
     this way, standalone components can be written without the need to create an
     NgModule to manage template dependencies.
@@ -27,6 +38,10 @@
     Any route can lazily load its routed, standalone component by using
     loadComponent:
   </p>
-  <pre><code>{{route}}</code></pre>
-  <p>This works as long as the loaded component is standalone.</p>
+  <pre><code class="language-typescript">export const ROUTES: Route[] = [
+  &#123; path: 'admin', loadComponent: () => 
+  import('./admin/panel.component').then(m => m.AdminPanelComponent) &#125;
+];</code></pre>
+
+  <p class="pt-2">This works as long as the loaded component is standalone.</p>
 </div>

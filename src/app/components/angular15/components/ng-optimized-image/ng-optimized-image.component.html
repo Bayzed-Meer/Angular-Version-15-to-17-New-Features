@@ -17,14 +17,14 @@
   </ul>
   <h3>Getting Started</h3>
   <p>Import NgOptimizedImage:</p>
-  <pre><code>{{import}}</code></pre>
-  <h3>Enable the directive</h3>
+  <pre><code class="language-typescript">import &#123; NgOptimizedImage &#125; from '&#64;angular/common'</code></pre>
+  <h3 class="pt-2">Enable the directive</h3>
   <p>
     To activate the NgOptimizedImage directive, replace your image's src
     attribute with ngSrc.
   </p>
-  <pre><code>{{directive}}</code></pre>
-  <h2>priority</h2>
+  <pre><code class="language-html">&lt;img ngSrc="cat.jpg" /&gt;</code></pre>
+  <h2 class="pt-2">priority</h2>
   <p>
     Always mark the LCP image on your page as priority to prioritize its
     loading.
@@ -33,8 +33,10 @@
     In order to prevent image-related layout shifts, NgOptimizedImage requires
     that you specify a height and width for your image
   </p>
-  <pre><code>{{priority}}</code></pre>
-  <p>Marking an image as priority applies the following optimizations:</p>
+  <pre><code class="language-html">&lt;img ngSrc="cat.jpg" width="400" height="200" priority&gt;</code></pre>
+  <p class="pt-2">
+    Marking an image as priority applies the following optimizations:
+  </p>
   <ul>
     <li>Sets fetchpriority=high</li>
     <li>Sets loading=eager</li>
@@ -54,8 +56,8 @@
     When you add the fill attribute to your image, you do not need and should
     not include a width and height, as in this example:
   </p>
-  <pre><code>{{fill}}</code></pre>
-  <h3>The image below is rendered using NgOptimizedImage</h3>
+  <pre><code class="language-html">&lt;img ngSrc="cat.jpg" fill&gt;</code></pre>
+  <h3 class="pt-2">The image below is rendered using NgOptimizedImage</h3>
   <div class="ngimage">
     <img [ngSrc]="image" fill />
   </div>

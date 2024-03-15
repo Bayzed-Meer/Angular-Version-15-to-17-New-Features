@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { HighlightService } from '../../../../highlight.service';
 
 @Component({
   selector: 'app-stand-alone',
@@ -9,19 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './stand-alone.component.scss',
 })
 export class StandAloneComponent {
-  imports: string = `@Component({
-standalone: true,
-selector: 'photo-gallery',
-imports: [ImageGridComponent],
-template: '
-  ... <image-grid [images]="imageList"></image-grid>
-  ',
-})
-export class PhotoGalleryComponent {
-  // component logic
-}`;
-  route: string = `export const ROUTES: Route[] = [
-  {path: 'admin', loadComponent: () => 
-  import('./admin/panel.component').then(mod => mod.AdminPanelComponent)},
-];`;
+  constructor(private highlightService: HighlightService) {}
+  ngAfterViewChecked() {
+    this.highlightService.highlightAll();
+  }
 }

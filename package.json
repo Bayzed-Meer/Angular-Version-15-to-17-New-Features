@@ -24,7 +24,9 @@
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.3",
     "@tailwindcss/typography": "^0.5.10",
+    "clipboard": "^2.0.11",
     "express": "^4.18.2",
+    "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

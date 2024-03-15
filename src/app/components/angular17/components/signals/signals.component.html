@@ -11,24 +11,29 @@
     complex data structures.
   </p>
   <h2>Writable signals</h2>
-  <pre><code>{{writeableSignals}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">const count = signal(0);
+// Signals are getter functions - calling them reads their value.
+console.log('The count is: ' + count());</code></pre>
+
+  <p class="pt-2">
     To change the value of a writable signal, you can either .set() it directly:
   </p>
-  <pre><code>count.set(3);</code></pre>
-  <p>
+  <pre><code class="language-typescript">count.set(3);</code></pre>
+  <p class="pt-2">
     or use the .update() operation to compute a new value from the previous one:
   </p>
-  <pre><code>// Increment the count by 1.
+  <pre><code class="language-typescript">// Increment the count by 1.
 count.update(value => value + 1);</code></pre>
 
-  <h2>Computed signals</h2>
+  <h2 class="pt-2">Computed signals</h2>
   <p>
     A computed signal derives its value from other signals. Define one using
     computed and specifying a derivation function:
   </p>
-  <pre><code>{{computedSignals}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">const count: WritableSignal&lt;number&gt; = signal(0);
+const doubleCount: Signal&lt;number&gt; = computed(() => count() * 2);</code></pre>
+
+  <p class="pt-2">
     The doubleCount signal depends on count. Whenever count updates, Angular
     knows that anything which depends on either count or doubleCount needs to
     update as well.
@@ -39,8 +44,11 @@ count.update(value => value + 1);</code></pre>
     change. An effect is an operation that runs whenever one or more signal
     values change. You can create an effect with the effect function:
   </p>
-  <pre><code>{{effect}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">effect(() =&gt;  &#123;
+  console.log('The current count is: count()');
+&#125;);</code></pre>
+
+  <p class="pt-2">
     Effects always run at least once. When an effect runs, it tracks any signal
     value reads. Whenever any of these signal values change, the effect runs
     again. Similar to computed signals, effects keep track of their dependencies
@@ -51,8 +59,33 @@ count.update(value => value + 1);</code></pre>
     Effects always execute asynchronously, during the change detection process.
   </p>
   <h2>Let's look at an example of signals</h2>
-  <pre><code>{{example}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;Component(&#123;
+  selector: 'app-signals',
+  template: `&lt;button (state)="check()"&gt;Call Signal&lt;/button&gt;`
+&#125;)
+
+// Declaring signals
+price = signal&lt;number&gt;(5);
+quantity = signal&lt;number&gt;(2);
+
+// Computed signal
+totalCost = computed(() =&gt; this.price() * this.quantity());
+
+state = signal&lt;boolean&gt;(false);
+
+// Use case of effect
+constructor() &#123;
+  effect(() =&gt; &#123;
+    console.log("Effects called");
+  &#125;);
+&#125;
+
+check() &#123;
+  console.log(this.totalCost());
+  this.state.set(!this.state());
+&#125;</code></pre>
+
+  <p class="pt-2">
     When the state button is clicked, we toggle its value and log the total
     price, which is calculated via a computed signal. Additionally, each time
     the state button is clicked, the effects are executed.

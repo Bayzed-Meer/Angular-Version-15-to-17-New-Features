@@ -4,16 +4,28 @@
     The new deferrable views, allow you to lazily load the list of comments and
     all their transitive dependencies with a single line of declarative code:
   </p>
-  <pre><code>{{code}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;defer &#123;
+  &lt;app-comment-list /&gt;
+&#125;</code></pre>
+
+  <p class="pt-2">
     The most incredible part is that this all happens via a compile-time
     transformation. Angular abstracts all the complexity by finding components,
     directive and pipes used inside of a defer block, generating dynamic imports
     and managing the process of loading and switching between states.
   </p>
   <h2>Let's analyze how it works:</h2>
-  <pre><code>{{full}}</code></pre>
-  <p>
+  <pre><code class="language-typescript">&#64;defer (on viewport) &#123;
+  &lt;app-comment-list /&gt;
+&#125; &#64;loading &#123;
+  Loading…
+&#125; &#64;error &#123;
+  Loading failed :(
+&#125; &#64;placeholder &#123;
+  &lt;p&gt;This is a placeholder&lt;/p&gt;
+&#125;</code></pre>
+
+  <p class="pt-2">
     In the example above, Angular first renders the contents of the placeholder
     block. When it becomes visible in the viewport, the loading of the
     comment-list component starts. Once the loading is completed, Angular
@@ -42,5 +54,10 @@
     of rendering them. Adding prefetching is as simple as adding a prefetch
     statement to the defer block and supports all the same triggers.
   </p>
-  <pre><code>{{prefetch}}</code></pre>
+  <pre><code class="language-typescript">&#64;defer (on viewport; prefetch on idle) &#123;
+  &lt;app-comment-list /&gt;
+  &#64;placeholder &#123;
+    <p>This is a placeholder</p>
+  &#125;
+&#125;</code></pre>
 </div>
