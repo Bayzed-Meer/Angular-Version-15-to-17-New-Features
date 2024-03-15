@@ -1,7 +1,4 @@
-import { Component, Injector, inject, signal } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
-import { interval } from 'rxjs/internal/observable/interval';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-rxjs-interop',
@@ -11,18 +8,28 @@ import { interval } from 'rxjs/internal/observable/interval';
   styleUrl: './rxjs-interop.component.scss',
 })
 export class RxjsInteropComponent {
-  // observable to signal
-  counter$ = interval(1000);
-  counter = toSignal(this.counter$, { initialValue: 0 });
-
-  //signal to observable
-
-  value = signal(1);
-  private injector = inject(Injector);
+  toSignal: string = ` @Component({
+    template: '{{ counter() }}',
+  })
+  export class Ticker {
+    counterObservable = interval(1000);
+    counter = toSignal(this.counterObservable, {initialValue: 0});
+  }`;
+  toObservable: string = `@Component({...})
+export class App {
+  count = signal(0);
+  count$ = toObservable(this.count);
 
   ngOnInit() {
-    const value$ = toObservable(this.value, {
-      injector: this.injector,
-    }).subscribe((x) => console.log(x));
+    this.count$.subscribe(() => ...);
   }
+}`;
+  old: string = `destroyed$ = new ReplaySubject<void>(1);
+
+data$ = http.get('...').pipe(takeUntil(this.destroyed$));
+
+ngOnDestroy() {
+  this.destroyed$.next();
+}`;
+  new: string = `data$ = http.get('…').pipe(takeUntilDestroyed());`;
 }

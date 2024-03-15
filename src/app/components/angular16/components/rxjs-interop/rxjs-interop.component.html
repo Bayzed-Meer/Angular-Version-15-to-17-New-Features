@@ -1,1 +1,46 @@
-{{ counter() }}
+<div class="mx-auto py-12 prose">
+  <h1>RxJS interoperability</h1>
+  <p>
+    Angular v16 has introduced `toSignal`, `toObservable`, and
+    `takeUntilDestroyed` to make signals and observables work together.
+  </p>
+  <h2>toSignal</h2>
+  <p>
+    Use the toSignal function to create a signal which tracks the value of an
+    Observable. It behaves similarly to the async pipe in templates, but is more
+    flexible and can be used anywhere in an application.
+  </p>
+  <pre><code>{{toSignal}}</code></pre>
+  <p>
+    Like the async pipe, toSignal subscribes to the Observable immediately,
+    which may trigger side effects. The subscription created by toSignal
+    automatically unsubscribes from the given Observable when the component or
+    service which calls toSignal is destroyed.
+  </p>
+  <h2>toObservable</h2>
+  <p>
+    Use the toObservable utility to create an Observable which tracks the value
+    of a signal. The signal's value is monitored with an effect which emits the
+    value to the Observable when it changes.
+  </p>
+  <pre><code>{{toObservable}}</code></pre>
+  <h2>takeUntilDestroyed</h2>
+  <p>
+    Angular users often want to complete a stream when a related subject
+    completes. The following illustrative pattern is quite common:
+  </p>
+  <pre><code>{{old}}</code></pre>
+  <p>
+    Angular v16 introduces a new RxJS operator called takeUntilDestroyed, which
+    simplifies this example into the following:
+  </p>
+  <pre><code>{{new}}</code></pre>
+  <p>
+    By default, this operator will inject the current cleanup context. For
+    example, used in a component, it will use the component’s lifetime.
+  </p>
+  <p>
+    takeUntilDestroyed is especially useful when you want to tie the lifecycle
+    of an Observable to a particular component’s lifecycle.
+  </p>
+</div>

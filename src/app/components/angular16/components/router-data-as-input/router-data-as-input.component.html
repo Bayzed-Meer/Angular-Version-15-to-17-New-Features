@@ -1,2 +1,48 @@
-<p>Data from url id : {{ id }}</p>
-<p>Data from url class name from query string : {{ class }}</p>
+<div class="mx-auto py-12 prose">
+  <h1>Router data as components inputs in Angular v16</h1>
+  <p>
+    Up until now, we have considered properties decorated with &#64;Input as
+    properties bound to the DOM properties. These properties can be used to pass
+    data from parent to child. For instance, if a child component has an input
+    property called name, we can use it like this:
+  </p>
+  <pre><code>{{child}}</code></pre>
+  <p>
+    Starting from Angular version 16, we can use inputs to declare properties
+    that will bind to route parameters.
+  </p>
+  <p>What does this mean? Let's consider the following route definition:</p>
+  <pre><code>{{route}}</code></pre>
+  <p>
+    When we need to obtain the ID in our component, such as when fetching a hero
+    using its ID, we would do the following in the component:
+  </p>
+  <pre><code>{{activated}}</code></pre>
+  <p>Now we can use &#64;Input for that. It's as simple as that.</p>
+  <pre><code>{{new}}</code></pre>
+  <h2>That’s not all! We can access variety of route parameters, including:</h2>
+  <ul>
+    <li>Route parameters</li>
+    <li>Query parameters</li>
+    <li>Route data from the data property</li>
+    <li>Route data from resolvers</li>
+  </ul>
+  <p>Let's quickly check the rest, starting from this route definition:</p>
+  <pre><code>{{rest}}</code></pre>
+  <p>We have</p>
+  <ul>
+    <li>id as route parameter</li>
+    <li>heroName as data from resolver</li>
+    <li>heroPower as data from data property</li>
+  </ul>
+  <p>
+    In the component, we can add input properties for all of these, as well as
+    an additional one for a query parameter, as follows:
+  </p>
+  <pre><code>{{Childcom}}</code></pre>
+  <p>
+    That's it! Everything works automatically, and input properties pick up the
+    current route parameters without the need for injecting ActivatedRoute into
+    the component anymore.
+  </p>
+</div>
