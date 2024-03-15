@@ -10,10 +10,10 @@
           menuItem.label
         }}</a>
         <div
-          class="absolute hidden group-hover:block text-nowrap bg-white border border-gray-300 p-2 rounded-md shadow-md"
+          class="absolute hidden group-hover:block text-nowrap bg-white border border-gray-300 p-2 rounded-md shadow-md divide-y divide-gray-300"
         >
           @for(childLink of menuItem.childLinks; track childLink.label){
-          <div>
+          <div class="p-2 hover:bg-gray-200">
             <a [routerLink]="childLink.routerLink" class="text-[12px]">{{
               childLink.label
             }}</a>
