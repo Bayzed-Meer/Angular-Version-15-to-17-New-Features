@@ -1,14 +1,23 @@
-<div class="example-listbox-container">
-  <label class="example-listbox-label" id="example-fav-color-label">
-    Favorite color
-  </label>
-  <ul
-    cdkListbox
-    aria-labelledby="example-fav-color-label"
-    class="example-listbox"
-  >
-    <li cdkOption="red" class="example-option">Red</li>
-    <li cdkOption="green" class="example-option">Green</li>
-    <li cdkOption="blue" class="example-option">Blue</li>
-  </ul>
+<div class="mx-auto py-12 prose">
+  <h1>CDK Listbox Module</h1>
+  <p>
+    Although we get most of the functionality from Angular CDK, we need to write
+    quite a bit of code to build accessible lists.
+  </p>
+  <p>
+    CdkListboxModule provides directives to help create accessible custom list
+    boxes. To use it, we need to import the CdkListboxModule, which provides two
+    directives — cdkListbox and cdkOption:
+  </p>
+  <pre><code>{{cdk}}</code></pre>
+  <p>
+    These two directives give us all the expected behavior for an accessible
+    experience, such as bidi layout support and keyboard interaction. In
+    addition, all directives apply their associated ARIA roles to their host
+    elements.
+  </p>
+  <p>
+    There is also support for Angular forms, disabling options, custom styles,
+    orientation, options typehead, multiple selects, and more!
+  </p>
 </div>

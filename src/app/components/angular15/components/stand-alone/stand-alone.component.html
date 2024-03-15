@@ -1,2 +1,32 @@
-<button mat-raised-button color="primary">Click me!</button>
-<p>Hi! from stand alone component</p>
+<div class="mx-auto py-12 prose">
+  <h1>Standalone API</h1>
+  <p>
+    Standalone components provide a simplified way to build Angular
+    applications. Standalone components, directives, and pipes aim to streamline
+    the authoring experience by reducing the need for NgModules.
+  </p>
+  <h2>The standalone flag and component imports</h2>
+  <p>
+    Components, directives, and pipes can now be marked as standalone: true.
+    Angular classes marked as standalone do not need to be declared in an
+  </p>
+  <p>
+    Standalone components specify their dependencies directly instead of getting
+    them through NgModules. For example, if PhotoGalleryComponent is a
+    standalone component, it can directly import another standalone component
+    ImageGridComponent:
+  </p>
+  <pre><code>{{imports}}</code></pre>
+  <p>
+    imports can also be used to reference standalone directives and pipes. In
+    this way, standalone components can be written without the need to create an
+    NgModule to manage template dependencies.
+  </p>
+  <h2>Lazy loading a standalone component</h2>
+  <p>
+    Any route can lazily load its routed, standalone component by using
+    loadComponent:
+  </p>
+  <pre><code>{{route}}</code></pre>
+  <p>This works as long as the loaded component is standalone.</p>
+</div>

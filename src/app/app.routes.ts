@@ -41,6 +41,13 @@ export const routes: Routes = [
             './components/angular15/components/cdk-list-box/cdk-list-box.component'
           ).then((m) => m.CdkListBoxComponent),
       },
+      {
+        path: 'directiveCompositionAPI',
+        loadComponent: () =>
+          import(
+            './components/angular15/components/directive-composition-api/directive-composition-api.component'
+          ).then((m) => m.DirectiveCompositionAPIComponent),
+      },
     ],
   },
   {

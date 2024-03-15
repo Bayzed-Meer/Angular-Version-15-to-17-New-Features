@@ -26,6 +26,10 @@ export class AppComponent {
         { label: 'Stand Alone API', routerLink: 'angular15/standAlone' },
         { label: 'Ng Optimized', routerLink: 'angular15/imageDirective' },
         { label: 'CDK List Box', routerLink: 'angular15/cdkList' },
+        {
+          label: 'Directive Composition API',
+          routerLink: 'angular15/directiveCompositionAPI',
+        },
       ],
     },
     {

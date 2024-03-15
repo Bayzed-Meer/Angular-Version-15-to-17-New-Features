@@ -1,0 +1,46 @@
+<div class="mx-auto py-12 prose">
+  <h1>Directive composition API</h1>
+  <p>
+    Angular directives offer a great way to encapsulate reusable behaviors—
+    directives can apply attributes, CSS classes, and event listeners to an
+    element.
+  </p>
+  <p>
+    The directive composition API lets you apply directives to a component's
+    host element from within the component TypeScript class.
+  </p>
+  <h2>Adding directives to another directive</h2>
+  <p>
+    You can also add hostDirectives to other directives, in addition to
+    components. This enables the transitive aggregation of multiple behaviors.
+    It works similar to inheritance where you can merge two directives and make
+    new one.
+  </p>
+  <pre><code>{{dtod}}</code></pre>
+  <h2>Including inputs and outputs</h2>
+  <p>
+    When you apply hostDirectives to your component, the inputs and outputs from
+    the host directives are not included in your component's API by default. You
+    can explicitly include inputs and outputs in your component's API by
+    expanding the entry in hostDirectives
+  </p>
+  <pre><code>{{input}}</code></pre>
+
+  <h3>Let's see how it works:</h3>
+  <pre><code>{{example}}</code></pre>
+  <p>Hover on the buttons to see the directive composition API working</p>
+  <button appBorder class="py-1 px-3 mb-4 rounded-lg bg-slate-300 mr-2">
+    button
+  </button>
+  <button appHighlight class="py-1 px-3 mb-4 rounded-lg bg-slate-300 mr-2">
+    button
+  </button>
+  <button
+    appHighlightAndBorder
+    highlightColor="green"
+    borderColor="black"
+    class="py-1 px-3 mb-4 rounded-lg bg-slate-300 mr-2"
+  >
+    button
+  </button>
+</div>
