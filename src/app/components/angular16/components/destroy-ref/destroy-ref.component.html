@@ -1,1 +1,26 @@
-<p>destroy-ref works!</p>
+<div class="mx-auto py-12 prose">
+  <h1>DestroyRef</h1>
+  <p>
+    Angular v16 has introduced a new provider called DestroyRef, which allows
+    for registering destroy callbacks for a specific lifecycle scope. This
+    feature is applicable to components, directives, pipes, embedded views, and
+    instances of EnvironmentInjector.
+  </p>
+  <p>
+    The usage of DestroyRef is straightforward. We can inject the DestroyRef
+    provider and register a destroy callback like so:
+  </p>
+  <pre><code>{{destroyref}}</code></pre>
+  <p>
+    Using DestroyRef, it’s possible to create reusable logic that performs
+    necessary cleanup tasks when a scope is destroyed without the need for
+    inheritance. This simplifies the implementation process and reduces
+    complexity.
+  </p>
+  <p>
+    For example, we can create an untilDestroyed operator that relies on
+    DestroyRef:
+  </p>
+  <pre><code>{{func}}</code></pre>
+  <pre><code>{{foo}}</code></pre>
+</div>

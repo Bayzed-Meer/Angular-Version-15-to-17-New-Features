@@ -1,6 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { interval } from 'rxjs/internal/observable/interval';
+import { Component, DestroyRef } from '@angular/core';
 
 @Component({
   selector: 'app-destroy-ref',
@@ -10,13 +8,43 @@ import { interval } from 'rxjs/internal/observable/interval';
   styleUrl: './destroy-ref.component.scss',
 })
 export class DestroyRefComponent {
-  #destroyRef = inject(DestroyRef);
-
-  ngOnInit(): void {
-    interval(1000)
-      .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe((value) => {
-        console.log(value);
-      });
+  constructor(private destroyRef: DestroyRef) {
+    destroyRef.onDestroy(() => {
+      console.log('destroyRef component destroyed');
+    });
   }
+  destroyref: string = `@Component({
+/* ... */
+})
+export class UserProfile {
+  constructor(private destroyRef: DestroyRef) {
+    destroyRef.onDestroy(() => {
+      console.log('UserProfile destruction');
+    });
+  }
+}`;
+
+  func: string = `export function untilDestroyed() {
+  const subject = new Subject();
+
+  inject(DestroyRef).onDestroy(() => {
+    subject.next(true);
+    subject.complete();
+  });
+
+  return <T>() => takeUntil<T>(subject.asObservable());
+}`;
+  foo: string = `@Directive({
+  selector: '[appFoo]',
+  standalone: true,
+})
+export class FooDirective {
+  private untilDestroyed = untilDestroyed();
+
+  ngOnInit() {
+    interval(1000)
+      .pipe(this.untilDestroyed())
+      .subscribe(console.log);
+  }
+}`;
 }
