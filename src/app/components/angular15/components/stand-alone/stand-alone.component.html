@@ -21,7 +21,7 @@
   selector: 'photo-gallery',
   imports: [ImageGridComponent],
   template: `
-    &lt;image-grid [images]="imageList"&gt;&lt;/image-grid&gt;
+    &lt;app-image-grid [images]="imageList"&gt;&lt;/app-image-grid&gt;
     `,
 &#125;)
 export class PhotoGalleryComponent &#123;
@@ -39,8 +39,10 @@ export class PhotoGalleryComponent &#123;
     loadComponent:
   </p>
   <pre><code class="language-typescript">export const ROUTES: Route[] = [
-  &#123; path: 'admin', loadComponent: () => 
-  import('./admin/panel.component').then(m => m.AdminPanelComponent) &#125;
+  &#123; 
+    path: 'admin', loadComponent: () => 
+    import('./admin/panel.component').then(m => m.AdminPanelComponent) 
+  &#125;
 ];</code></pre>
 
   <p class="pt-2">This works as long as the loaded component is standalone.</p>

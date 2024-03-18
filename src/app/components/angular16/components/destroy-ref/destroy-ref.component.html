@@ -12,11 +12,11 @@
   </p>
   <pre><code class="language-typescript">&#64;Component(&#123;
   /* ... */
-  &#125;)
-  export class UserProfile &#123;
-    constructor(private destroyRef: DestroyRef) &#123;
-      destroyRef.onDestroy(() => &#123;
-        console.log('UserProfile destruction');
+&#125;)
+export class UserProfile &#123;
+  constructor(private destroyRef: DestroyRef) &#123;
+    destroyRef.onDestroy(() => &#123;
+      console.log('UserProfile destruction');
     &#125;);
   &#125;
 &#125;</code></pre>

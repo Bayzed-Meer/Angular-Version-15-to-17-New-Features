@@ -45,7 +45,7 @@ const doubleCount: Signal&lt;number&gt; = computed(() => count() * 2);</code></p
     values change. You can create an effect with the effect function:
   </p>
   <pre><code class="language-typescript">effect(() =&gt;  &#123;
-  console.log('The current count is: count()');
+  console.log('The current count is: ' + count());
 &#125;);</code></pre>
 
   <p class="pt-2">

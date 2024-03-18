@@ -33,9 +33,9 @@ export class Ticker &#123;
   <pre><code class="language-typescript">count = signal(0);
 count$ = toObservable(this.count);
   
-  ngOnInit() &#123;
-    this.count$.subscribe((newValue) => &#123;
-      console.log(`Count changed to: $&#123;newValue&#125;`);
+ngOnInit() &#123;
+  this.count$.subscribe((newValue) => &#123;
+    console.log(`Count changed to: $&#123;newValue&#125;`);
   &#125;);
 &#125;</code></pre>
 
@@ -46,10 +46,10 @@ count$ = toObservable(this.count);
   </p>
   <pre><code class="language-typescript">destroyed$ = new ReplaySubject&lt;void&gt;(1);
 
-  data$ = http.get('...').pipe(takeUntil(this.destroyed$));
-  
-  ngOnDestroy() &#123;
-    this.destroyed$.next();
+data$ = http.get('...').pipe(takeUntil(this.destroyed$));
+
+ngOnDestroy() &#123;
+  this.destroyed$.next();
 &#125;</code></pre>
 
   <p class="pt-2">
